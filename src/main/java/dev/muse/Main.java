@@ -7,8 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         ClassA classA = new ClassA();
-        //classA.calledMethodA();
-        classA.testEntrypoint(10);
+        classA.entryPoint();
 
 
 
