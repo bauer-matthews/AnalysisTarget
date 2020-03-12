@@ -12,6 +12,9 @@ public class Main {
         ClassB classB = new ClassB();
         classB.sourceMethod("very sensitive data");
 
+        sinkSource("a");
+        sourceSink("b");
+
         mainSrc("A sensitive string");
     }
 
@@ -23,6 +26,16 @@ public class Main {
     static String mainSink(String userString) {
         System.out.println(userString);
         return userString;
+    }
+
+    static String sinkSource(String userString) {
+        String n = mainSrc(userString);
+        return mainSink(n);
+    }
+
+    static String sourceSink(String userString) {
+        String n = mainSink(userString);
+        return mainSrc(n);
     }
 
     private static void mainSanitizer(String userString) {
