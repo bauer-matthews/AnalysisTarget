@@ -6,17 +6,18 @@ public class ClassB {
 
     public void sourceMethod(String userInput) {
         path1(userInput);
-        path2(userInput);
-        path3(userInput);
-        path4();
-        path5(userInput, false);
+        //path2(userInput);
+        //path3(userInput);
+        //path4();
+        //path5(userInput, false);
     }
 
-    private void sinkMethod(String data) {
-        System.out.println("Here's the data: " + data);
+    String sinkMethod(String data) {
+        return "Here's the data: " + data;
     }
 
     private String sanitizeMethod(String data) {
+        System.out.println(data);
         return data.replaceAll("sensitive", "safe");
     }
 
@@ -41,7 +42,7 @@ public class ClassB {
     }
 
     // No control flow
-    private void path5(String data, boolean doOutput) {
+    void path5(String data, boolean doOutput) {
         if(doOutput) {
             sinkMethod(data);
         }
