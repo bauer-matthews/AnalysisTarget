@@ -15,14 +15,14 @@ public class Main {
         mainSrc("A sensitive string");
     }
 
-    private static void mainSrc(String userString) {
-        mainSink(userString);
-        mainSanitizer(userString);
+    static String mainSrc(String userString) {
+        return mainSink(userString);
+        //mainSanitizer(userString);
     }
 
-    private static void mainSink(String userString) {
+    static String mainSink(String userString) {
         System.out.println(userString);
-
+        return userString;
     }
 
     private static void mainSanitizer(String userString) {
