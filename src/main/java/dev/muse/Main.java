@@ -12,33 +12,39 @@ public class Main {
         ClassB classB = new ClassB();
         classB.sourceMethod("very sensitive data");
 
-        sinkSource("a");
-        sourceSink("b");
-
-        mainSrc("A sensitive string");
+        callSourceAndSinkBad1("x");
+        callSourceAndSinkBad1("y");
     }
 
-    static String mainSrc(String userString) {
-        return mainSink(userString);
-        //mainSanitizer(userString);
+    static String mainSrc() {
+        return "val";
     }
 
-    static String mainSink(String userString) {
-        System.out.println(userString);
-        return userString;
-    }
-
-    static String sinkSource(String userString) {
-        String n = mainSrc(userString);
-        return mainSink(n);
-    }
-
-    static String sourceSink(String userString) {
-        String n = mainSink(userString);
-        return mainSrc(n);
+    static void mainSink(String userString) {
+        System.out.print(userString);
     }
 
     private static void mainSanitizer(String userString) {
         userString.replaceAll("/", ".");
+    }
+
+    static void sourceAndSink(String s) {
+        mainSink(s);
+        s = mainSrc();
+    }
+
+    static void callSourceAndSinkOk(String s) {
+        sourceAndSink(s);
+    }
+
+    static void callSourceAndSinkBad1(String s) {
+        sourceAndSink(s);
+        mainSink(s);
+    }
+
+
+    static void callSourceAndSinkBad2(String s) {
+        s = mainSrc();
+        sourceAndSink(s);
     }
 }
